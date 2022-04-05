@@ -10,11 +10,12 @@ class PortScan:
         self.ports_info = {}
         self.remote_host = ""
 
-
+    # Tarayacağı port ile ilgili bilgi alıyor. 
     def getPortsInfo(self):
         data = jsonData(PortScan.portsFile)
         self.ports_info = {int(k): v for (k,v) in data.items()}
 
+    #Verilen inputu ip adresine dönüştürüyor. 
     @staticmethod
     def hostIPAddress(target):
         try:
@@ -24,6 +25,7 @@ class PortScan:
         else:
             return ip_addr
 
+    #Taramayı yapan fonksiyon. 
     def portScanner(self, port):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(0.6)
@@ -34,6 +36,7 @@ class PortScan:
             self.closed_ports.append(port)
         s.close()
 
+    #Parametreleri alıp sonuçları gösteren fonksiyon.
     def run(self):
         target = input("Enter destination: ")
         self.remote_host = self.hostIPAddress(target)
