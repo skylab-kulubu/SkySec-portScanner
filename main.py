@@ -1,6 +1,6 @@
 import socket
 from utils import jsonData
-
+# Abinin amk bi de 31 
 class PortScan:
     portsFile = "ports.json"
 
